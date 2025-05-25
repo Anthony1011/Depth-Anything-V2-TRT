@@ -13,7 +13,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Depth Anything V2')
     
     parser.add_argument('--img-path', type=str)
-    parser.add_argument('--input-size', type=int, default=518)
+    parser.add_argument('--input_size', type=int, default=518)
     parser.add_argument('--outdir', type=str, default='./vis_depth')
     
     parser.add_argument('--encoder', type=str, default='vitl', choices=['vits', 'vitb', 'vitl', 'vitg'])

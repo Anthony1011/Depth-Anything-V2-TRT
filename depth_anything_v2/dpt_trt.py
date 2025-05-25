@@ -8,6 +8,7 @@ from .dinov2 import DINOv2
 from .util.blocks import FeatureFusionBlock, _make_scratch
 from .util.transform import Resize, NormalizeImage, PrepareForNet
 
+
 def _make_fusion_block(features, use_bn, size=None):
     return FeatureFusionBlock(
         features,
@@ -18,6 +19,7 @@ def _make_fusion_block(features, use_bn, size=None):
         align_corners=True,
         size=size,
     )
+
 
 class ConvBlock(nn.Module):
     def __init__(self, in_feature, out_feature):
@@ -31,6 +33,7 @@ class ConvBlock(nn.Module):
     
     def forward(self, x):
         return self.conv_block(x)
+
 
 class DPTHead(nn.Module):
     def __init__(
@@ -178,7 +181,8 @@ class DepthAnythingV2(nn.Module):
         depth = self.depth_head(features, patch_h, patch_w)
         depth = F.relu(depth)
         
-        return depth.squeeze(1)
+        #return depth.squeeze(1)
+        return depth
     
     @torch.no_grad()
     def infer_image(self, raw_image, input_size=518):

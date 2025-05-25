@@ -1,0 +1,47 @@
+# 忽略模型權重檔案
+*.pth
+*.pt
+*.ckpt
+*.weights
+*.h5
+*.onnx
+*.engine
+*.tflite
+*.pb
+*.npz
+*.joblib
+*.sav
+
+# 忽略影片檔案
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.flv
+*.webm
+
+# Python 編譯中間產物
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter Notebook checkpoint
+**/.ipynb_checkpoints/
+
+# macOS 系統檔
+.DS_Store
+
+# VSCode 設定檔（若使用）
+.vscode/
+
+# Logs
+*.log
+
+# Cache
+*.cache
+
+# 忽略這些資料夾
+videos/
+logs/
+checkpoints/
+**/__pycache__/
