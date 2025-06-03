@@ -1,6 +1,6 @@
 # Depth Anything V2 - TensorRT 擴充版
 
-本專案是基於原始 [Depth Anything V2](https://github.com/isl-org/Depth-Anything) 所延伸，**新增支援 ONNX / TensorRT 的壓縮與影片推論功能**，可更高效地部署於 GPU 加速推論場景中。
+本專案是基於原始 [Depth Anything V2](https://github.com/DepthAnything/Depth-Anything-V2) 所延伸，**新增支援 ONNX / TensorRT 的壓縮與影片推論功能**，可更高效地部署於 GPU 加速推論場景中。
 
 > 🎥 支援即時影片輸入推論（Webcam 或 MP4）
 > ⚙️ 支援 PyTorch → ONNX → TensorRT 引擎轉換流程
@@ -50,3 +50,37 @@ python trt.py \
   --video_path ./videos/test.mp4
 
 ```
+
+
+---
+
+## 🙏 致謝與引用 (Credits & Citation)
+
+本專案基於以下優秀開源研究成果延伸開發，特此感謝原始作者社群的貢獻：
+
+- [Depth Anything V2](https://github.com/DepthAnything/Depth-Anything-V2)
+- [Depth Anything ONNX](https://github.com/fabio-sim/Depth-Anything-ONNX)
+
+若您在研究或應用上受本專案或其基礎模型啟發，請考慮引用以下論文：
+
+```bibtex
+@article{depth_anything_v2,
+  title={Depth Anything V2},
+  author={Yang, Lihe and Kang, Bingyi and Huang, Zilong and Zhao, Zhen and Xu, Xiaogang and Feng, Jiashi and Zhao, Hengshuang},
+  journal={arXiv:2406.09414},
+  year={2024}
+}
+
+@inproceedings{depth_anything_v1,
+  title={Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data}, 
+  author={Yang, Lihe and Kang, Bingyi and Huang, Zilong and Xu, Xiaogang and Feng, Jiashi and Zhao, Hengshuang},
+  booktitle={CVPR},
+  year={2024}
+}
+
+@misc{oquab2023dinov2,
+  title={DINOv2: Learning Robust Visual Features without Supervision},
+  author={Oquab, Maxime et al.},
+  journal={arXiv:2304.07193},
+  year={2023}
+}
