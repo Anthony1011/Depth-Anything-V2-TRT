@@ -19,6 +19,20 @@
 
 ---
 ## 📊 模型推論效能比較 (FPS)
+**🟠 原始 PyTorch 模型（vit-s）**
+![](assets/vits.gif)
+
+**🟡 ONNX 模型推論（vit-s）**
+![](assets/vits_onnx.gif)
+
+**🔵 TensorRT FP32 推論（vit-s）**
+![](assets/vits_engine_fp32.gif)
+
+**🟢 TensorRT FP16 推論（vit-s）**
+![](assets/vvits_engine_fp16.gif)
+
+---
+## 🎬 推論效果預覽
 
 |模型架構       | 原始 PyTorch | ONNX | TensorRT FP32 | TensorRT FP16 |
 |---------------|------|------|------|------|
