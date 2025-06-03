@@ -54,7 +54,7 @@ python trt.py \
 
 ---
 
-## 🙏 致謝與引用 (Credits & Citation)
+##  Citation
 
 本專案基於以下優秀開源研究成果延伸開發，特此感謝原始作者社群的貢獻：
 
