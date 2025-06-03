@@ -151,7 +151,7 @@ class DepthAnything():
         parser.add_argument('--grayscale', dest='grayscale', action='store_true', help='do not apply colorful palette')
         parser.add_argument('--width', type=int , default=518 ,help='')
         parser.add_argument('--height', type=int , default=518 ,help='')
-        parser.add_argument('--video_scale', type=int , default=80 ,help='percentage to shrink display window (e.g., 50)')
+        parser.add_argument('--video_scale', type=int , default=100 ,help='percentage to shrink display window (e.g., 50)')
 
         parser.add_argument('--trt', type=str , default="True", choices=["True","False"] ,help='True is mean export trt Model or not')
         parser.add_argument('--precision', type=str, default='fp32', choices=['fp32', 'fp16'], help='Precision mode for TensorRT engine')

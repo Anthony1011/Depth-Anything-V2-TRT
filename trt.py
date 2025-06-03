@@ -338,7 +338,7 @@ class DepthAnythingTRT():
         parser = argparse.ArgumentParser(description='Depth Anything V2 - TensorRT Inference')
         parser.add_argument('--video_path', type=str, default="./videos/4.mp4",  help='Image source: video_path or 0 for webcam')
         parser.add_argument('--outdir', type=str, default='./vis_video_depth_trt') 
-        parser.add_argument('--video_scale', type=int , default=50 ,help='Percentage to shrink display window (e.g., 50)')
+        parser.add_argument('--video_scale', type=int , default=40 ,help='Percentage to shrink display window (e.g., 50)')
 
         parser.add_argument('--root_weights', type=str, default="./checkpoints", help='The root directory of weights')
 

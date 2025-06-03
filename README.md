@@ -29,7 +29,7 @@
 ![](assets/vits_engine_fp32.gif)
 
 **🟢 TensorRT FP16 推論（vit-s）**
-![](assets/vvits_engine_fp16.gif)
+![](assets/vits_engine_fp166.gif)
 
 ---
 ## 🎬 推論效果預覽
