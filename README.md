@@ -18,7 +18,26 @@
 | `demo_trt.py`  | 綜合推論腳本（正在整合中），目標是整合原始模型 → ONNX → TensorRT 並支援影片推論與自動建構流程。 |
 
 ---
+## 📊 模型推論效能比較 (FPS)
 
+|模型架構       | 原始 PyTorch | ONNX | TensorRT FP32 | TensorRT FP16 |
+|---------------|------|------|------|------|
+| `vit-s`       |40–41 FPS|66–68 FPS|71–76 FPS|76–82 FPS |
+| `vit-b`       |22–23 FPS|33–35 FPS|37–39 FPS|90–100 FPS|
+| `vit-ly`      | 9–10 FPS|13–14 FPS|13–14 FPS|55–58 FPS |
+
+---
+## 💻 系統環境資訊 (環境建議)
+
+| 套件名稱       | 版本 |
+|Python|3.10.0|
+|PyTorch|2.5.1+cu121|
+|TorchVision|0.20.1+cu121|
+|Torchaudio|2.5.1+cu121|
+|TensorRT|10.10.0.31|
+|ONNX|1.17.0|
+|ONNXRuntime-GPU|1.21.1|
+---
 ## 🧠 模型權重下載
 
 請至以下 Google Drive 下載對應的模型與 TensorRT 引擎檔案：
