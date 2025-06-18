@@ -1,0 +1,81 @@
+<launch>
+
+    <arg name="depth_model_type" default="tensorrt" doc="選擇深度估計模型類型: 'none', 'pytorch', 'tensorrt'"/>
+    
+    <arg name="start_rviz" default="true" doc="是否啟動 RViz (true/false)"/>
+
+    <arg name="video_path" default="$(find Depth_Anything)/data/video2.mp4" doc="輸入影片檔案的路徑"/>
+    <arg name="video_output_topic" default="/camera/image_raw" doc="影片發布節點的輸出 topic"/>
+
+    <arg name="input_image_topic" default="/camera/image_raw" doc="原始影像的輸入 topic "/>
+    
+    <arg name="output_depth_raw_topic" default="/depth_anything/depth_raw" doc="原始深度圖的輸出 topic (32FC1)"/>
+    <arg name="output_depth_vis_topic" default="/depth_anything/depth_color" doc="彩色可視化深度圖的輸出 topic (bgr8)"/>
+    <arg name="output_stitched_topic" default="/depth_anything/stitched_image" doc="原始影像與深度圖拼接後的輸出 topic (bgr8)"/>
+
+    <arg name="pytorch_encoder" default="vitb" doc="PyTorch 模型的編碼器類型 (vits, vitb, vitl, vitg)"/>
+    <arg name="pytorch_checkpoint_path" default="$(find Depth_Anything)/checkpoints/torch" doc="PyTorch 模型權重檔案 (.pth) 的資料夾路徑"/>
+    <arg name="pytorch_input_size" default="518" doc="PyTorch 模型輸入影像的尺寸 (寬高相同)"/>
+    <arg name="pytorch_grayscale" default="false" doc="PyTorch 深度圖是否輸出灰階可視化 (true/false)"/>
+
+    <arg name="trt_encoder" default="vitb" doc="TensorRT 模型的編碼器類型 (vits, vitb, vitl, vitg)"/>
+    <arg name="trt_precision" default="fp16" doc="TensorRT 模型的精度 (fp16/fp32)"/>
+    <arg name="trt_root_weights" default="$(find Depth_Anything)/checkpoints" doc="TensorRT 引擎和 ONNX 檔案的根路徑"/>
+    <arg name="trt_outdir" default="$(find Depth_Anything)/vis_video_depth_trt" doc="TensorRT 推論結果的輸出資料夾 (ROS 模式下可能未使用)"/>
+    <arg name="trt_video_scale" default="40" doc="TensorRT 影片縮放比例 (ROS 模式下可能未使用)"/>
+
+    <arg name="onnx_hybrid_encoder" default="vits" doc="模型的編碼器類型 (vits, vitb, vitl, vitg)"/>
+    <arg name="onnx_hybrid_checkpoints_path" default="$(find Depth_Anything)/checkpoints" doc="模型權重、ONNX 和 TensorRT 引擎的路徑"/>
+    <arg name="onnx_hybrid_width" default="518" doc="模型輸入影像的寬度"/>
+    <arg name="onnx_hybrid_height" default="518" doc="模型輸入影像的高度"/>
+    <arg name="onnx_hybrid_use_trt" default="true" doc="是否啟用 TensorRT 加速 (true/false)"/>
+    <arg name="onnx_hybrid_precision" default="fp16" doc="TensorRT 模型的精度 (fp16/fp32)"/>
+    <arg name="onnx_hybrid_workspace" default="4" doc="TensorRT 建構時的工作區記憶體大小 (GB)"/>
+
+    <arg name="rviz_config" default="$(find Depth_Anything)/rviz/view_images.rviz" doc="RViz 設定檔的路徑"/>
+
+
+    <node pkg="Depth_Anything" type="open_camera.py" name="video_publisher_node" output="screen">
+        <param name="video_path" value="$(arg video_path)" />
+        <param name="output_topic_name" value="$(arg video_output_topic)" /> 
+        </node>
+
+    <node pkg="Depth_Anything" type="run_video_node.py" name="depth_pytorch_node" output="screen" if="$(eval arg('depth_model_type') == 'pytorch')">
+        <param name="encoder" value="$(arg pytorch_encoder)" />
+        <param name="checkpoint_path" value="$(arg pytorch_checkpoint_path)" />
+        <param name="input_size" value="$(arg pytorch_input_size)" />
+        <param name="grayscale" value="$(arg pytorch_grayscale)" />
+        <remap from="/camera/image_raw" to="$(arg video_output_topic)"/> 
+        <remap from="/ai_depth/image" to="$(arg output_depth_raw_topic)"/>
+        <remap from="/ai_depth/image_vis" to="$(arg output_depth_vis_topic)"/>
+        </node>
+
+    <node pkg="Depth_Anything" type="trt_node.py" name="depth_tensorrt_node" output="screen" if="$(eval arg('depth_model_type') == 'tensorrt')">
+        <param name="encoder" value="$(arg trt_encoder)" />
+        <param name="precision" value="$(arg trt_precision)" />
+        <param name="root_weights" value="$(arg trt_root_weights)" />
+        <param name="outdir" value="$(arg trt_outdir)" />
+        <param name="video_scale" value="$(arg trt_video_scale)" />
+        
+        <remap from="/camera/image_raw" to="$(arg video_output_topic)"/> 
+        <remap from="/depth_anything/depth_raw" to="$(arg output_depth_raw_topic)"/>
+        <remap from="/depth_anything/depth_color" to="$(arg output_depth_vis_topic)"/>
+        <remap from="/depth_anything/stitched_image" to="$(arg output_stitched_topic)"/>
+    </node>
+
+    <node pkg="Depth_Anything" type="demo_onnx_node.py" name="depth_onnx_hybrid_node" output="screen" if="$(eval arg('depth_model_type') == 'onnx_hybrid')">
+        <param name="input_topic" value="$(arg input_image_topic)"/>
+        <param name="output_topic" value="$(arg output_stitched_topic)"/> 
+        <param name="checkpoints_path" value="$(arg onnx_hybrid_checkpoints_path)"/>
+        <param name="encoder" value="$(arg onnx_hybrid_encoder)"/>
+        <param name="width" value="$(arg onnx_hybrid_width)"/>
+        <param name="height" value="$(arg onnx_hybrid_height)"/>
+        <param name="use_trt" value="$(arg onnx_hybrid_use_trt)"/>
+        <param name="precision" value="$(arg onnx_hybrid_precision)"/>
+        <param name="workspace" value="$(arg onnx_hybrid_workspace)"/>
+    </node>
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_config)" required="true" if="$(arg start_rviz)">
+        </node>
+
+</launch>

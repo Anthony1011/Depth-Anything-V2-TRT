@@ -1,0 +1,145 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Status1
+        - /TF1
+        - /Camera Image1
+        - /AI Depth Image1
+        - /Raw Depth Image1
+        - /Stitched Image1 # 新增
+        - /PyTorch Vis Image1 # 新增
+      Splitter Ratio: 0.5
+    Tree Height: 600
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+      Marker Scale: 0.3
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        {}
+      Update Interval: 0
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /camera/image_raw # 影片發布的原始影像
+      Name: Camera Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /ai_depth/image_vis # 您舊的 PyTorch 可視化深度圖 Topic (仍保留，如果 run_video_node.py 發布此 Topic)
+      Name: AI Depth Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Value: true
+    # --- 新增顯示項目 ---
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /depth_anything/depth_raw # trt_node.py 輸出的原始深度圖
+      Name: Raw Depth Image
+      Normalize Range: true # 對於浮點數深度圖，啟用正規化以正確顯示
+      Queue Size: 2
+      Transport Hint: raw
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /depth_anything/depth_color # trt_node.py 輸出的彩色可視化深度圖
+      Name: Color Depth Image # 將其區分為 "彩色深度圖"
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /depth_anything/stitched_image # trt_node.py 和 demo_onnx_node.py 輸出的拼接影像
+      Name: Stitched Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /depth_anything/result_image_vis # 從 launch 檔案重新映射的 PyTorch 模式可視化輸出
+      Name: PyTorch Vis Image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: base_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 3.5
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.06
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 0.1
+        Y: 0
+        Z: 0
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.45
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 5.8
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 800
+  Hide Left Dock: false
+  Hide Right Dock: true
+  Width: 1200
+  X: 50
+  Y: 25

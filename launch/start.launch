@@ -1,0 +1,39 @@
+<launch>
+
+    <!-- ======== 參數定義 ======== -->
+    <!-- 參數 1: 影片來源的路徑 -->
+    <arg name="video_path" default="$(find Depth_Anything)/data/video2.mp4" />
+
+    <!-- 參數 2: AI 模型相關設定 -->
+    <arg name="encoder" default="vits" doc="模型的編碼器類型，可選：vits, vitb, vitl, vitg" />
+    <arg name="checkpoint_path" default="$(find Depth_Anything)/checkpoints" doc="存放模型權重檔案 (.pth) 的資料夾路徑" />
+
+    <!-- 參數 3: RViz 設定檔的路徑 -->
+    <arg name="rviz_config" default="$(find Depth_Anything)/rviz/view_images.rviz" />
+    
+
+    <!-- ======== 節點啟動 ======== -->
+    <!-- 
+      節點 1: 影片發布節點 (open_camera.py)
+      讀取指定的影片檔案，並將影像發布到 /camera/image_raw 主題。
+    -->
+    <node pkg="Depth_Anything" type="open_camera.py" name="video_publisher_node" output="screen">
+        <param name="video_path" value="$(arg video_path)" />
+    </node>
+
+    <!-- 
+      節點 2: AI 深度辨識節點 (run_video_node.py)
+      訂閱 /camera/image_raw，執行深度預測，並發布結果。
+    -->
+    <node pkg="Depth_Anything" type="run_video_node.py" name="depth_anything_node" output="screen">
+        <param name="encoder" value="$(arg encoder)" />
+        <param name="checkpoint_path" value="$(arg checkpoint_path)" />
+    </node>
+
+    <!-- 
+      節點 3: 啟動 RViz 進行視覺化。
+      使用 '-d' 選項來載入指定的 RViz 設定檔。
+    -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_config)" required="true" />
+
+</launch>
