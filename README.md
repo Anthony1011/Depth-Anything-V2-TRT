@@ -85,6 +85,13 @@ python trt.py \
 
 ```
 
+### 🔹 使用 launch 開啟ros node ：
+```bash
+
+roslaunch Depth_Anything use.launch depth_model_type:=tensorrt
+
+```
+
 
 ---
 
