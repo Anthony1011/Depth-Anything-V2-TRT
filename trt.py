@@ -339,9 +339,7 @@ class DepthAnythingTRT():
         parser.add_argument('--video_path', type=str, default="./videos/4.mp4",  help='Image source: video_path or 0 for webcam')
         parser.add_argument('--outdir', type=str, default='./vis_video_depth_trt') 
         parser.add_argument('--video_scale', type=int , default=40 ,help='Percentage to shrink display window (e.g., 50)')
-
         parser.add_argument('--root_weights', type=str, default="./checkpoints", help='The root directory of weights')
-
 
         # 讀取 engine 參數
         parser.add_argument('--encoder', type=str, default='vitb', choices=['vits', 'vitb', 'vitl', 'vitg'])

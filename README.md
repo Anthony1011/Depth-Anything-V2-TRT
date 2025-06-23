@@ -77,14 +77,12 @@ python demo_onnx.py \
 
 ### 🔹 使用 engine 推論 ：
 ```bash
-
 python trt.py \
   --encoder vitb \
   --precision fp16 \
   --video_path ./videos/test.mp4
 
 ```
-
 
 ---
 
