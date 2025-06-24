@@ -12,10 +12,11 @@
 
 | 檔案名稱       | 說明 |
 |----------------|------|
-| `demo_onnx.py` | 最基礎推論腳本，支援載入原始 PyTorch 或 ONNX 權重模型，並可進行 ONNX / TensorRT 引擎壓縮。 |
-| `trt.py`       | 以 TensorRT engine 執行的高效率推論腳本，使用 PyCUDA 進行記憶體與流控制管理。 |
+| `open_camera.py`  | 將鏡頭畫面發布至ros topic上。 |
+| `demo_onnx_node.py` | 最基礎推論腳本，支援載入原始 PyTorch 或 ONNX 權重模型，並可進行 ONNX / TensorRT 引擎壓縮。 |
+| `trt_node.py`       | 以 TensorRT engine 執行的高效率推論腳本，使用 PyCUDA 進行記憶體與流控制管理。 |
 | `export.py`    | 專門用來匯出模型為 ONNX 並建立 TensorRT 引擎，支援 FP16 / FP32 模式。 |
-| `demo_trt.py`  | 綜合推論腳本（正在整合中），目標是整合原始模型 → ONNX → TensorRT 並支援影片推論與自動建構流程。 |
+
 
 ---
 ## 📊 模型推論效能比較 (FPS)
@@ -60,6 +61,7 @@
 🔗 [Depth Anything V2 Weights - Google Drive](https://drive.google.com/drive/folders/1FIeJFCWv2RBRNA9CVut9nqfSIA7yKgyH?usp=drive_link)
 
 建議將下載後的檔案放置於 `./checkpoints` 目錄下。
+建議將.pth檔案下載後的檔案放置於 `./checkpoints/torch` 目錄下。
 
 ---
 
