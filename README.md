@@ -85,10 +85,22 @@ python trt.py \
 
 ```
 
-### 🔹 使用 launch 開啟ros node ：
+### 🔹 使用 launch 開啟ros node 一般的pytorch版本：
 ```bash
 
-roslaunch Depth_Anything use.launch depth_model_type:=tensorrt
+roslaunch Depth_Anything use.launch depth_model_type:=pytorch encoder:=vitb precision:=fp16 start_rviz:=true
+
+```
+### 🔹 使用 launch 開啟ros node 使用engine推論：
+```bash
+
+roslaunch Depth_Anything use.launch depth_model_type:=tensorrt encoder:=vitb precision:=fp16 start_rviz:=true
+
+```
+### 🔹 使用 launch 開啟ros node 使用 ONNX 推論 / 建立.onnx and .engine weights：
+```bash
+
+roslaunch Depth_Anything use.launch depth_model_type:=onnx_hybrid encoder:=vitb precision:=fp16 use_trt:=true start_rviz:=true
 
 ```
 
