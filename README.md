@@ -91,7 +91,6 @@ python trt.py \
 roslaunch Depth_Anything use.launch \
  depth_model_type:=pytorch \
  encoder:=vitb \
- precision:=fp16 \
  start_rviz:=true
 
 ```
