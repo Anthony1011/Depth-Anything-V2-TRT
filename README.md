@@ -45,13 +45,13 @@
 
 | 套件名稱       | 版本 |
 |---------------|------|
-|Python|3.10.0|
-|PyTorch|2.5.1+cu121|
-|TorchVision|0.20.1+cu121|
-|Torchaudio|2.5.1+cu121|
+|Python|3.8.10|
+|PyTorch|1.12.1+cu113|
+|TorchVision|0.13.1+cu113|
+|Torchaudio|0.12.1+cu113|
 |TensorRT|10.10.0.31|
-|ONNX|1.17.0|
-|ONNXRuntime-GPU|1.21.1|
+|ONNX|1.13.1|
+|ONNXRuntime-GPU|1.14.1|
 ---
 ## 🧠 模型權重下載
 
