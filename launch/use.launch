@@ -13,13 +13,15 @@
     <arg name="output_depth_vis_topic" default="/depth_anything/depth_color" doc="彩色可視化深度圖的輸出 topic (bgr8)"/>
     <arg name="output_stitched_topic" default="/depth_anything/stitched_image" doc="原始影像與深度圖拼接後的輸出 topic (bgr8)"/>
 
-    <arg name="encoder" default="vitb" doc="PyTorch 模型的編碼器類型 (vits, vitb, vitl, vitg)"/>
+    <arg name="encoder" default="vitb" doc="模型的編碼器類型 (vits, vitb, vitl, vitg)"/>
+    <arg name="precision" default="fp16" doc="模型的精度 (fp16/fp32)"/>
+
     <arg name="pytorch_checkpoint_path" default="$(find Depth_Anything)/checkpoints/torch" doc="PyTorch 模型權重檔案 (.pth) 的資料夾路徑"/>
     <arg name="pytorch_input_size" default="518" doc="PyTorch 模型輸入影像的尺寸 (寬高相同)"/>
     <arg name="pytorch_grayscale" default="false" doc="PyTorch 深度圖是否輸出灰階可視化 (true/false)"/>
 
     <!--arg name="trt_encoder" default="vitb" doc="TensorRT 模型的編碼器類型 (vits, vitb, vitl, vitg)"/-->
-    <arg name="precision" default="fp16" doc="TensorRT 模型的精度 (fp16/fp32)"/>
+    <!--arg name="precision" default="fp16" doc="TensorRT 模型的精度 (fp16/fp32)"/-->
     <arg name="trt_root_weights" default="$(find Depth_Anything)/checkpoints" doc="TensorRT 引擎和 ONNX 檔案的根路徑"/>
     <arg name="trt_outdir" default="$(find Depth_Anything)/vis_video_depth_trt" doc="TensorRT 推論結果的輸出資料夾 (ROS 模式下可能未使用)"/>
     <arg name="trt_video_scale" default="40" doc="TensorRT 影片縮放比例 (ROS 模式下可能未使用)"/>
