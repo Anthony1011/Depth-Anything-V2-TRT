@@ -28,7 +28,7 @@
     <arg name="onnx_hybrid_checkpoints_path" default="$(find Depth_Anything)/checkpoints" doc="模型權重、ONNX 和 TensorRT 引擎的路徑"/>
     <arg name="onnx_hybrid_width" default="518" doc="模型輸入影像的寬度"/>
     <arg name="onnx_hybrid_height" default="518" doc="模型輸入影像的高度"/>
-    <arg name="onnx_hybrid_use_trt" default="true" doc="是否啟用 TensorRT 加速 (true/false)"/>
+    <arg name="use_trt" default="true" doc="是否啟用 TensorRT 加速 (true/false)"/>
     <!--arg name="onnx_hybrid_precision" default="fp16" doc="TensorRT 模型的精度 (fp16/fp32)"/-->
     <arg name="onnx_hybrid_workspace" default="4" doc="TensorRT 建構時的工作區記憶體大小 (GB)"/>
 
