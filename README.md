@@ -85,7 +85,7 @@ python trt.py \
 
 ```
 
-### 🔹 使用 launch 開啟ros node 一般的pytorch版本：
+### 🔹 使用 launch 開啟ros node 使用 pytorch 推論：
 ```bash
 
 roslaunch Depth_Anything use.launch depth_model_type:=pytorch encoder:=vitb precision:=fp16 start_rviz:=true
