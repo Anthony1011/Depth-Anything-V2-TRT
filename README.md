@@ -118,7 +118,6 @@ ros2 launch Depth_Anything_V2 \
   precision:=fp16
 
 ```
-ros2 launch Depth_Anything_V2 depth_anything.launch.py depth_model_type:=onnx_hybrid start_rviz:=true encoder:=vits precision:=fp16
 ---
 
 ##  Citation
