@@ -72,7 +72,7 @@
         <param name="encoder" value="$(arg encoder)"/>
         <param name="width" value="$(arg onnx_hybrid_width)"/>
         <param name="height" value="$(arg onnx_hybrid_height)"/>
-        <param name="use_trt" value="$(arg onnx_hybrid_use_trt)"/>
+        <param name="use_trt" value="$(arg use_trt)"/>
         <param name="precision" value="$(arg precision)"/>
         <param name="workspace" value="$(arg onnx_hybrid_workspace)"/>
     </node>
