@@ -66,38 +66,35 @@
 
 ## 🚀 推論流程快速開始
 
-## 參數說明
+### 🔧 參數說明
 
-```
+| 參數名稱                 | 說明                                                                 |
+|--------------------------|----------------------------------------------------------------------|
+| `depth_model_type`       | 選擇模型來源，`onnx_hybrid` 使用 PyTorch 或 ONNX 模型，`tensorrt` 使用 .engine |
+| `encoder`                | 模型大小選擇，支援 `vits`, `vitb`, `vitl`, `vitg` 等                 |
+| `use_trt`                | 若為 `true` 則會以 ONNX 模型執行 TensorRT 壓縮與加速                 |
+| `precision`              | 精度模式，支援 `fp16` 或 `fp32`（當 `use_trt=true` 或 `tensorrt` 必填） |
+| `onnx_hybrid_workspace`  | TensorRT 壓縮工作記憶體空間（單位 GB，預設為 4）                        |
+| `start_rviz`             | 是否啟動 RViz 顯示（`true` 或 `false`）  
 
-depth_model_type:=onnx_hybrid   | 表示採用torch 或是 onnx 推論
-encoder:=vits                   | 選擇使用哪一種模型大小
-use_trt:=false                  | 採用torch推論
-use_trt:=true                   | 採用onnx推論並且會執行模型壓縮包含 .onnx 與 .enging
-precision:=fp16                 | 當use_trt:=true 必須要選擇精度，壓縮.engin時才能指定精度
-onnx_hybrid_workspace:=4        | 壓縮時TensorRT 建構時的工作區記憶體大小 (GB)預設為4
+---
 
-```
-### 🔹 使用torch 權重開始推論
+### 🔹 使用 PyTorch 權重（onnx_hybrid + 不壓縮）
 ```bash
-
-ros2 launch depth_Anything_V2 \
-  depth_anything.launch.py \
+ros2 launch depth_Anything_V2 depth_anything.launch.py \
   depth_model_type:=onnx_hybrid \
   use_trt:=false \
-  encoder:=vits \
-
+  encoder:=vits
 ```
 
 ### 🔹 使用onnx 權重開始推論且同時檢查並壓縮.onnx與.engine權重
 ```bash
 
-ros2 launch depth_Anything_V2 \
-  depth_anything.launch.py \
+ros2 launch depth_Anything_V2 depth_anything.launch.py \
   depth_model_type:=onnx_hybrid \
   use_trt:=true \
   encoder:=vits \
-  precision:=fp32 \
+  precision:=fp32
 
 ```
 
@@ -106,11 +103,11 @@ ros2 launch depth_Anything_V2 \
 
 ```bash
 
-ros2 launch depth_Anything_V2 \
-  depth_anything.launch.py \
+ros2 launch depth_Anything_V2 depth_anything.launch.py \
   depth_model_type:=tensorrt \
   encoder:=vits \
-  precision:=fp16 \
+  precision:=fp16
+
 
 ```
 
@@ -118,11 +115,10 @@ ros2 launch depth_Anything_V2 \
 
 ```bash
 
-ros2 launch depth_Anything_V2 \
-  depth_anything.launch.py \
+ros2 launch depth_Anything_V2 depth_anything.launch.py \
   depth_model_type:=tensorrt \
   encoder:=vits \
-  precision:=fp32 \
+  precision:=fp32\
 
 ```
 
