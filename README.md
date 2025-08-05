@@ -6,30 +6,6 @@
 > ⚙️ 支援 PyTorch → ONNX → TensorRT 引擎轉換流程
 > 🚀 支援 FP32 / FP16 模式選擇與自動化權重轉換
 
----
-## 📊 模型推論效能比較 (FPS)
-**🟠 原始 PyTorch 模型（vit-s）**
-![](assets/vits.gif)
-
-**🟡 ONNX 模型推論（vit-s）**
-![](assets/vits_onnx.gif)
-
-**🔵 TensorRT FP32 推論（vit-s）**
-![](assets/vits_engine_fp32.gif)
-
-**🟢 TensorRT FP16 推論（vit-s）**
-![](assets/vits_engine_fp16.gif)
-
----
-## 🎬 推論效果預覽
-
-|模型架構       | 原始 PyTorch | ONNX | TensorRT FP32 | TensorRT FP16 |
-|---------------|------|------|------|------|
-| `vit-s`       |40–41 FPS|66–68 FPS|71–76 FPS|76–82 FPS |
-| `vit-b`       |22–23 FPS|33–35 FPS|37–39 FPS|90–100 FPS|
-| `vit-ly`      | 9–10 FPS|13–14 FPS|13–14 FPS|55–58 FPS |
-
----
 ## 💻 系統環境資訊 (環境建議)
 
 | 套件名稱       | 版本 |
@@ -41,6 +17,7 @@
 |TensorRT|10.10.0.31|
 |ONNX|1.13.1|
 |ONNXRuntime-GPU|1.14.1|
+|ROS2|humble|
 ---
 ## 🧠 模型權重下載
 
