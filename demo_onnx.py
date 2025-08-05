@@ -32,7 +32,9 @@ class DepthAnything():
     def load_model(self):
 
         depth_anything = DepthAnythingV2(**self.model_configs[self.args.encoder])
-        depth_anything.load_state_dict(torch.load(f'./checkpoints/depth_anything_v2_{self.args.encoder}.pth', map_location = self.device), strict=True)
+        depth_anything.load_state_dict(torch.load(f'./checkpoints/depth_anything_v2_metric_vkitti_{self.args.encoder}.pth', map_location = self.device), strict=True)
+
+        # depth_anything_v2_metric_hypersim_vits
         depth_anything = depth_anything.to(self.device).eval()
 
         if self.args.trt == "True":
@@ -53,6 +55,7 @@ class DepthAnything():
             return depth_anything_onnx
 
         else:
+            print("NO uesd TRT")
             return depth_anything
 
     def expotr_model(self, model, onnx_path):
@@ -240,7 +243,7 @@ class DepthAnything():
         parser.add_argument('--height', type=int , default=518 ,help='')
         parser.add_argument('--video_scale', type=int , default=100 ,help='percentage to shrink display window (e.g., 50)')
 
-        parser.add_argument('--trt', type=str , default="True", choices=["True","False"] ,help='True is mean export trt Model or not')
+        parser.add_argument('--trt', type=str , default="False", choices=["True","False"] ,help='True is mean export trt Model or not')
 
         parser.add_argument('--precision', type=str, default='fp32', choices=['fp32', 'fp16'], help='Precision mode for TensorRT engine')
         parser.add_argument('--workspace', type=int , default=4, choices=[1, 2, 4, 6, 8] ,help='')
