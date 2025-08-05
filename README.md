@@ -66,58 +66,66 @@
 
 ## 🚀 推論流程快速開始
 
-### 🔹 使用 ONNX 推論 / 建立.onnx and .engine weights：
-```bash
-python demo_onnx.py \
-  --encoder vitb \
-  --trt True \
-  --precision fp16 \
-  --video_path ./videos/test.mp4
-  
-```
-
-### 🔹 使用 engine 推論 ：
-```bash
-python trt.py \
-  --encoder vitb \
-  --precision fp16 \
-  --video_path ./videos/test.mp4
-
-```
-### 🔹 使用 launch 開啟ros node 使用 pytorch 推論：
-```bash
-
-ros2 launch Depth_Anything_V2 \
-  depth_anything.launch.py \
-  depth_model_type:=pytorch \
-  start_rviz:=true \
-  encoder:=vits
+## 參數說明
 
 ```
 
-### 🔹 使用 launch 開啟ros node 使用 engine 推論：
-```bash
-
-ros2 launch Depth_Anything_V2 \
-  depth_anything.launch.py \
-  depth_model_type:=tensorrt \
-  start_rviz:=true \
-  encoder:=vits \
-  precision:=fp16
+depth_model_type:=onnx_hybrid   | 表示採用torch 或是 onnx 推論
+encoder:=vits                   | 選擇使用哪一種模型大小
+use_trt:=false                  | 採用torch推論
+use_trt:=true                   | 採用onnx推論並且會執行模型壓縮包含 .onnx 與 .enging
+precision:=fp16                 | 當use_trt:=true 必須要選擇精度，壓縮.engin時才能指定精度
+onnx_hybrid_workspace:=4        | 壓縮時TensorRT 建構時的工作區記憶體大小 (GB)預設為4
 
 ```
-
-### 🔹 使用 launch 開啟ros node 使用 ONNX 推論 / 建立.onnx and .engine weights：
+### 🔹 使用torch 權重開始推論
 ```bash
 
 ros2 launch depth_Anything_V2 \
   depth_anything.launch.py \
   depth_model_type:=onnx_hybrid \
-  start_rviz:=true \
+  use_trt:=false \
   encoder:=vits \
-  precision:=fp16
 
 ```
+
+### 🔹 使用onnx 權重開始推論且同時檢查並壓縮.onnx與.engine權重
+```bash
+
+ros2 launch depth_Anything_V2 \
+  depth_anything.launch.py \
+  depth_model_type:=onnx_hybrid \
+  use_trt:=true \
+  encoder:=vits \
+  precision:=fp32 \
+
+```
+
+
+## 🔹 使用TensorRT fp16精度的.enine權重開始推論
+
+```bash
+
+ros2 launch depth_Anything_V2 \
+  depth_anything.launch.py \
+  depth_model_type:=tensorrt \
+  encoder:=vits \
+  precision:=fp16 \
+
+```
+
+## 🔹 使用TensorRT fp32精度的.enine權重開始推論
+
+```bash
+
+ros2 launch depth_Anything_V2 \
+  depth_anything.launch.py \
+  depth_model_type:=tensorrt \
+  encoder:=vits \
+  precision:=fp32 \
+
+```
+
 ---
 
 ##  Citation
