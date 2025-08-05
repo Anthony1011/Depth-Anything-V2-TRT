@@ -1,4 +1,4 @@
-# Depth Anything V2 - TensorRT 擴充版
+# Depth Anything V2 - TensorRT ROS2 版本
 
 本專案是基於原始 [Depth Anything V2](https://github.com/DepthAnything/Depth-Anything-V2) 所延伸，**新增支援 ONNX / TensorRT 的壓縮與影片推論功能**，可更高效地部署於 GPU 加速推論場景中。
 
