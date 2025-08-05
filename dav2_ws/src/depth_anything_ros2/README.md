@@ -110,7 +110,7 @@ ros2 launch Depth_Anything_V2 \
 ### 🔹 使用 launch 開啟ros node 使用 ONNX 推論 / 建立.onnx and .engine weights：
 ```bash
 
-ros2 launch Depth_Anything_V2 \
+ros2 launch depth_Anything_V2 \
   depth_anything.launch.py \
   depth_model_type:=onnx_hybrid \
   start_rviz:=true \
