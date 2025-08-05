@@ -5,7 +5,7 @@ from glob import glob
 # 重新導入 find_packages，這是更穩健的做法
 from setuptools import find_packages, setup
 
-package_name = 'Depth_Anything_V2'
+package_name = 'depth_anything_ros2'
 
 setup(
     name=package_name,
@@ -40,8 +40,9 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='soc123',
-    maintainer_email='alex0962082478@gmail.com',
+    # Meta data
+    maintainer='Anthony itri',
+    maintainer_email='chento7611@gmail.com',
     description='A ROS2 package for Depth Anything V2 inference.',
     license='Apache-2.0',
     tests_require=['pytest'],
@@ -50,13 +51,8 @@ setup(
     entry_points={
         'console_scripts': [
             # 格式：'可執行檔名稱 = 模組路徑:主函數'
-            # 'open_camera' 是您在 launch.py 中要使用的 executable 名稱
-            'open_camera = Depth_Anything_V2.open_camera:main',
-            'run_video_node = Depth_Anything_V2.run_video_node:main',
-            'trt_node = Depth_Anything_V2.trt_node:main',
-            'demo_onnx_node = Depth_Anything_V2.demo_onnx_node:main',
-            'with_trt_node = Depth_Anything_V2.with_trt_node:main',
-            # 我移除了 'with_trt_node'，因為它不在您的 launch 檔案中。如果需要，可以再加回來。
+            'trt_node = depth_anything_ros2.trt_node:main',
+            'demo_onnx_node = depth_anything_ros2.demo_onnx_node:main',
         ],
     },
 )
