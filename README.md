@@ -76,7 +76,7 @@ ros2 launch depth_Anything_V2 depth_anything.launch.py \
 ros2 launch depth_Anything_V2 depth_anything.launch.py \
   depth_model_type:=tensorrt \
   encoder:=vits \
-  precision:=fp32\
+  precision:=fp32
 ```
 
 ---

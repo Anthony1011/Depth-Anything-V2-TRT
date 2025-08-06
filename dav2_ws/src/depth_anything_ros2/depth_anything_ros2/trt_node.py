@@ -237,6 +237,11 @@ class DepthAnythingROS2(Node):
             
             inference_start_time = time.time()
             disp = self.model.predictions(rgb_image)
+
+            # Normalize disp to [0,1] pre image 
+            disp = disp.astype(np.float32)
+            disp = (disp - disp.min()) / (disp.max( - disp.min()) + 1e-6)
+
             scaled_disp, depth_map = self.disp_to_depth(disp, self.min_depth, self.max_depth)
             inference_ms = (time.time() - inference_start_time) * 1000.0
 

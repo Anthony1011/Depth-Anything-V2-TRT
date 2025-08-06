@@ -159,7 +159,7 @@ class DepthAnythingTRT():
         
         p_start = time.time()
 
-        # --- 1. 準備輸入資料 (須與 ONNX/引擎建立時一致) ---
+        # ---準備輸入資料 (須與 ONNX/引擎建立時一致) ---
         #    - Resize (如果需要，但通常引擎建立時已固定尺寸)
         #    - BGR -> RGB (已傳入 frame_rgb)
         #    - HWC -> CHW
